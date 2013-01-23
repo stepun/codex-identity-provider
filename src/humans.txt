@@ -13,7 +13,7 @@
 
 /* THANKS */: 
   
-  - GitHub: You rock!
+  - GitHub: You rock!!
 
 /* SITE */: 
 
