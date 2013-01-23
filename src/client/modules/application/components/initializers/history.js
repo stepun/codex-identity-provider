@@ -23,22 +23,23 @@ function(_) {
     // Initialize history now if the layout has been initialized otherwise
     // listen for the "initialize:layout" event.
 
-    var
-      initialized = false,
-      init = _.bind(initHistory, this, options);
+    var initialize = _.bind(initHistory, this, options);
+    if (this.layout) {
+      return initialize();
+    }
 
+    var hasInitialized = false;
+    this.on('initialize:layout', initialize);
     this.on('initialize:history', function() {
-      initialized = true;
+      hasInitialized = true;
     });
 
     this.on('initialize:after', function() {
-      if (!initialized) {
+      if (!hasInitialized) {
         console.warn(
           'History initializer failed; "initialize:layout" never triggered'
         );
       }
     });
-    
-    (this.layout)? init() : this.on('initialize:layout', init);
   };
 });
