@@ -15,7 +15,7 @@ function(app) {
             emphasis: 'default',
             iconAppend: false,
             iconPrepend: 'thumbs-up',
-            label: 'This is a Generated Button',
+            label: 'This is a Generated Button!',
             title: 'Take Action One',
             size: 'default'
           }
