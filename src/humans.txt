@@ -1,0 +1,38 @@
+/* TEAM */: 
+
+
+  - Hacker.: Rabbit
+    Email: hello@rabbit.me
+    Birth Name: Aaron van Kaam
+    Location: Minneapolis, Minnesota, USA
+    Tools: 
+    - Apple iMac
+    - SublimeText
+    - Google Chrome
+
+
+/* THANKS */: 
+
+
+/* SITE */: 
+
+
+  Platform: 
+  - Backbone
+  - Handlebars
+  - JSON2
+  - jQuery
+  - Lodash
+  - Marionette
+  - Modernizr
+  - Require
+
+
+  HumansTxt:
+  - Last Updated: 2013-01-19
+
+
+  # This file is in parsable YAML format.
+  # Eventually I'll write up a blog post about how this can be parsed.
+  # For the adventurous, I've denoted member titles with a trailing "."
+
