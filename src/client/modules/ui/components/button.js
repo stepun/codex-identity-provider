@@ -5,7 +5,7 @@ define(
 ],
 function(ButtonModel, ButtonView) {
   return {
-    model: ButtonModel,
-    view: ButtonView
+    component: ButtonView,
+    model: ButtonModel
   };
 });

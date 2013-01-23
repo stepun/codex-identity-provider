@@ -7,7 +7,7 @@ define([
 function(app) {
   return {
     index: function() {
-      var btnGroup = window.X.btnGroup = app.UI.create('button-group', {
+      var btnGroup = app.UI.register('test', 'button-group', {
         collection: [
           {
             block: false,
@@ -22,7 +22,7 @@ function(app) {
           }
         ]
       });
-
+      
       app.layout.viewport.show(btnGroup);
     }
   }

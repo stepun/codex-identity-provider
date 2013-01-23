@@ -6,8 +6,8 @@ define(
 ],
 function(ButtonGroupCollection, ButtonGroupModel, ButtonGroupView) {
   return {
+    component: ButtonGroupView,
     collection: ButtonGroupCollection,
-    model: ButtonGroupModel,
-    view: ButtonGroupView
+    model: ButtonGroupModel
   };
 });

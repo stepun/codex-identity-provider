@@ -6,7 +6,15 @@ define(
 ],
 function(module, app, Backbone) {
   var UI = app.module('UI', function(UI) {
-    this.componentsPath = module.id.replace(/[^\/]*$/, '') + 'components/';
+    var mcfg = module.config() || {};
+
+    this.registryNamespace = (_.isString(mcfg.registryNamespace))
+      ? mcfg.registryNamespace
+      : 'UI';
+
+    this.componentsPath = (_.isString(mcfg.componentsPath))
+      ? mcfg.componentsPath
+      : module.id.replace(/[^\/]*$/, '') + 'components/';
   });
 
   UI.create = function(componentName, config) {
@@ -16,31 +24,41 @@ function(module, app, Backbone) {
         model: false,
         collection: false
       }),
-      viewOptions = {},
+      componentOptions = {},
       mcUpper;
 
     _.each(['model', 'collection'], function(mc) {
       if (config[mc]) {
         if (_.isFunction(config[mc].toJSON)) {
-          viewOptions[mc] = config[mc];
+          componentOptions[mc] = config[mc];
         }
         else if (pkg[mc]) {
-          viewOptions[mc] = new pkg[mc](config[mc]);
+          componentOptions[mc] = new pkg[mc](config[mc]);
         }
         else {
           mcUppercase = _.first(mc).toUpperCase() + _.rest(mc).join('');
-          viewOptions[mc] = new Backbone[mcUppercase](config[mc]);
+          componentOptions[mc] = new Backbone[mcUppercase](config[mc]);
         }
       }
       else if (pkg[mc]) {
-        viewOptions[mc] = new pkg[mc]();
+        componentOptions[mc] = new pkg[mc]();
       }
     });
 
     config = _.omit(config, 'model', 'collection');
-    viewOptions = _.defaults(config, viewOptions);
+    componentOptions = _.defaults(config, componentOptions);
 
-    return new pkg.view(viewOptions);
+    return new pkg.component(componentOptions);
+  };
+
+  UI.getRegistry = function() {
+    return this.app.registry.namespace(this.registryNamespace);
+  };
+
+  UI.register = function(key, componentName, config) {
+    var component = this.create(componentName, config);
+    this.getRegistry().set(key, component);
+    return component;
   };
 
   return UI;
