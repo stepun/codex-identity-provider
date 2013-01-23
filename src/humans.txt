@@ -12,7 +12,8 @@
 
 
 /* THANKS */: 
-
+  
+  - GitHub: You rock!
 
 /* SITE */: 
 
