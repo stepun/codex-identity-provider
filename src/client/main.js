@@ -116,8 +116,6 @@
   }
 });
 
-window.X = {};
-
 require([
   'jquery',
   'app',
