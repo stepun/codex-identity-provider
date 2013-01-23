@@ -18,8 +18,9 @@ function(_, Layout) {
     }
 
     var layout = this.layout = new options.viewClass(options.viewOptions);
-    
-    this.on('initialize:after', function() {
+    layout.on('render', _.bind(this.trigger, this, 'layout:render'));
+
+    this.once('before:dispatch', function() {
       layout.render();
     });
 

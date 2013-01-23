@@ -1,7 +1,8 @@
 define([
+  'backbone',
   'underscore'
 ],
-function(_) {
+function(Backbone, _) {
   var initHistory = function(options) {
     options = _.defaults(options && options.history || {}, {
       pushState: false,
@@ -10,10 +11,10 @@ function(_) {
 
     var startHistory = function() {
       Backbone.history.start(options);
-      this.trigger('start:history', options);
+      this.trigger('history:start', options);
     };
 
-    this.on('initialize:after', _.bind(startHistory, this));
+    this.on('start', _.bind(startHistory, this));
 
     this.trigger('initialize:history', options);
   };

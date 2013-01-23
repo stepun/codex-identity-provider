@@ -1,12 +1,13 @@
 define([
   'app',
+  'modules/application/components/controller',
 
   // UI Components
   'modules/ui/components/button-group'
 ],
-function(app) {
-  return {
-    index: function() {
+function(app, Controller) {
+  return new Controller({
+    indexAction: function() {
       var btnGroup = app.UI.register('myButtonGroup', 'button-group', {
         collection: [
           {
@@ -30,5 +31,5 @@ function(app) {
         uiRegistry.get('myButtonGroup').collection.at(0).get('label')
       );
     }
-  }
+  });
 });

@@ -4,7 +4,7 @@ define([
 ],
 function(Marionette, controller) {
   var routes = {
-    '': 'index'
+    '': 'indexAction'
   };
 
   return Marionette.AppRouter.extend({
