@@ -7,7 +7,7 @@ define([
 function(app) {
   return {
     index: function() {
-      var btnGroup = app.UI.register('test', 'button-group', {
+      var btnGroup = app.UI.register('myButtonGroup', 'button-group', {
         collection: [
           {
             block: false,
@@ -16,7 +16,7 @@ function(app) {
             iconAppend: false,
             iconPrepend: 'thumbs-up',
             iconVariant: 'white',
-            label: 'Action One',
+            label: 'This is a Generated Button',
             title: 'Take Action One',
             size: 'default'
           }
@@ -24,6 +24,12 @@ function(app) {
       });
       
       app.layout.viewport.show(btnGroup);
+
+      var uiRegistry = app.registry.get('UI');
+
+      console.log(
+        uiRegistry.get('myButtonGroup').collection.at(0).get('label')
+      );
     }
   }
 });
