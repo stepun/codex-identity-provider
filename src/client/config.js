@@ -32,15 +32,16 @@ define([ // -------------------------------------------------------------------
   // 
   
   bootstrap: {
+    debug: true,
     initializers: [
       initRegistry,
       initLayout,
       initHistory
     ]
   },
-
+  
   registry: {},
-
+  
   layout: {
     viewClass: HomeModule.StandardLayout
   },
@@ -50,7 +51,11 @@ define([ // -------------------------------------------------------------------
     routers: [
       HomeModule.IndexRouter
     ]
+  },
+  
+  modules: {
+    
   }
   
-
+  
 }}); // ------------------------------------------------------------------------

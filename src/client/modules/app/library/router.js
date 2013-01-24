@@ -22,12 +22,6 @@ function(Marionette, _, app) {
         }
 
         Marionette.addEventBinder(controller);
-        var trigger = controller.trigger;
-        controller.trigger = function() {
-          console.log('controller', arguments);
-          return trigger.apply(this, arguments);
-        }
-
         if (!controller.hasOwnProperty('app')) {
           controller.app = app;
         }
@@ -65,13 +59,13 @@ function(Marionette, _, app) {
 
         controller[method] = function() {
           data.params = arguments;
-          trigger.call(this.app, 'before:dispatch', data);
+          trigger.call(this.app, 'before:controller:dispatch', controller, data);
           trigger.call(this, 'before:dispatch', data);
           trigger.call(this, 'before:' + method, data);
           sourceMethod.apply(this, data.params);
           trigger.call(this, method, data);
           trigger.call(this, 'dispatch', data);
-          trigger.call(this.app, 'dispatch', data);
+          trigger.call(this.app, 'controller:dispatch', controller, data);
         };
         controller[method].dispatchable = true;
       }

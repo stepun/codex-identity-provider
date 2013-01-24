@@ -8,20 +8,10 @@ define(
   './layouts/standard/view'
 ],
 function(module, Backbone, app, IndexRouter, IndexController, StandardLayout) {
-  var Home = app.module('Home', function(Home) {
-    var mcfg = module.config() || {};
+  var Home = app.module('Home');
 
-    this.registryNamespace = (_.isString(mcfg.registryNamespace))
-      ? mcfg.registryNamespace
-      : 'Home';
-  });
-
-  Home.getRegistry = function() {
-    return this.app.registry.namespace(this.registryNamespace);
-  };
-
-  Home.version = '0.1';
   _.extend(Home, {
+    version: '0.1',
     IndexRouter: IndexRouter,
     IndexController: IndexController,
     StandardLayout: StandardLayout
