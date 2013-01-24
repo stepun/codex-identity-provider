@@ -2,3 +2,4 @@
 /build
 /public
 /webroot
+/src/client/config.js
