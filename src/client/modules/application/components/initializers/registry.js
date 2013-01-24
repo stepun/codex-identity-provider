@@ -14,7 +14,11 @@ function($, _, Registry) {
       $('head title').text(text);
     });
 
-    this.trigger('initialize:registry', options, this.registry);
+    this.on('start:routers', _.bind(function(routers) {
+      this.registry.set('routers', routers);
+    }, this));
+
+    this.trigger('initialize:registry', this.registry);
   };
 
   return initRegistry;

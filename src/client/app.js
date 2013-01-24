@@ -1,12 +1,12 @@
 define([
   'modules/application/main'
 ],
-function(Application) {
+function(Application, initializers) {
   var app = new Application();
 
   var trigger = app.trigger;
   app.trigger = function() {
-    console.log(arguments);
+    console.log('application', arguments);
     return trigger.apply(this, arguments);
   };
 

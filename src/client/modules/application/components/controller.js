@@ -1,41 +1,30 @@
 define(
 [
+  'app',
   'backbone',
   'backbone.marionette',
-  'underscore',
-  'app'
+  'underscore'
 ],
-function(Backbone, Marionette, _, app) {
-  var Controller = function(properties) {
-    Marionette.addEventBinder(this);
-    _.extend(this, properties);
-
-    var controller = this;
-    _.each(_.functions(controller), function(action) {
-      if (action.match(/action$/i)) {
-        var callback = controller[action];
-        controller[action] = function() {
-          var evt = {
-            controller: controller,
-            action: action,
-            params: arguments
-          };
-
-          app.trigger('before:dispatch', evt);
-          callback.apply(this, evt.params);
-          app.trigger('dispatch', evt);
-        };
+function(app, Backbone, Marionette, _) {
+  var Controller = Marionette.Controller.extend({
+    app: app,
+    dispatchable: [],
+    getDispatchable: function() {
+      if (!this.dispatchable.length) {
+        this.dispatchable = _.difference(_.functions(this),
+          // Exclusions
+          'getDispatchable',
+          'initialize',
+          _.functions(new Controller()),
+          _.filter(_.functions(this), function(method) {
+            return method.match(/^on[A-Z]/);
+          })
+        );
       }
-    });
-    
-    this.initialize();
-  };
 
-  _.extend(Controller.prototype, {
-    initialize: function() {}
+      return this.dispatchable;
+    }
   });
-
-  Controller.extend = Marionette
 
   return Controller;
 });

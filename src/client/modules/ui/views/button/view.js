@@ -9,6 +9,9 @@ function(ItemView, tpl) {
     tagName: 'a',
     className: 'btn',
     initialize: function(options) {
+      this.$el.addClass(this.className);
+      this.$el.attr('href', this.model.get('href'));
+
       this.on('before:render', _.bind(function() {
         this.graphToElementClass('block');
         this.graphToElementClass('disabled');

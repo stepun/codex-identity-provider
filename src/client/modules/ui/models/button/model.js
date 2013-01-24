@@ -26,6 +26,7 @@ function(Model) {
         'inverse': 'btn-inverse',
         'link'   : 'btn-link'
       },
+      href: '#',
       iconAppend: false,
       iconPrepend: false,
       iconVariant: 'default',

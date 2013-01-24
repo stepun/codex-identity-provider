@@ -1,15 +1,28 @@
 define([
-  'backbone.marionette',
-  'underscore',
-  './components/initializers'
+  'backbone.marionette'
 ],
-function(Marionette, _, initializers) {
-  var Application = function() {
-    Marionette.Application.apply(this, arguments);
-    _.each(initializers, _.bind(this.addInitializer, this));
-  };
+function(Marionette) {
+  var parent = Marionette.Application.prototype;
+  var Application = Marionette.Application.extend({
+    bootstrap: function(options) {
+      options = options || {};
+      if (_.isArray(options.initializers)) {
+        _.each(
+          options.initializers,
+          _.bind(this.addInitializer, this)
+        );
+      }
 
-  Application.prototype = Marionette.Application.prototype;
+      return this;
+    },
+    start: function(options) {
+      if (options) {
+        this.bootstrap(options.bootstrap);
+      }
+
+      return parent.start.apply(this, arguments);
+    }
+  });
 
   return Application;
 });

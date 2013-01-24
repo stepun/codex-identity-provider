@@ -25,7 +25,8 @@ function(module, app, Backbone) {
         collection: false
       }),
       componentOptions = {},
-      mcUpper;
+      mcUpper,
+      component;
 
     _.each(['model', 'collection'], function(mc) {
       if (config[mc]) {
@@ -48,7 +49,8 @@ function(module, app, Backbone) {
     config = _.omit(config, 'model', 'collection');
     componentOptions = _.defaults(config, componentOptions);
 
-    return new pkg.component(componentOptions);
+    component = pkg.component.extend(componentOptions);
+    return new component();
   };
 
   UI.getRegistry = function() {

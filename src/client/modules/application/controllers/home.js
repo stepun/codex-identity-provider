@@ -1,35 +1,37 @@
 define([
-  'app',
-  'modules/application/components/controller',
+  'jquery',
+  'underscore',
+  '../components/controller',
+  '../views/masthead/view',
 
   // UI Components
-  'modules/ui/components/button-group'
+  'modules/ui/main',
+  'modules/ui/components/button'
 ],
-function(app, Controller) {
-  return new Controller({
-    indexAction: function() {
-      var btnGroup = app.UI.register('myButtonGroup', 'button-group', {
-        collection: [
-          {
-            block: false,
-            disabled: false,
-            emphasis: 'default',
-            iconAppend: false,
-            iconPrepend: 'thumbs-up',
-            label: 'This is a Generated Button!',
-            title: 'Take Action One',
-            size: 'default'
-          }
-        ]
-      });
-      
-      app.layout.viewport.show(btnGroup);
-
-      var uiRegistry = app.registry.get('UI');
-
-      console.log(
-        uiRegistry.get('myButtonGroup').collection.at(0).get('label')
-      );
+function($, _, Controller, MastheadView) {
+  return Controller.extend({
+    initialize: function() {
+      this.app.on('start:layout', _.bind(function(layout) {
+        this.masthead = layout.masthead;
+        this.viewport = layout.viewport;
+        this.masthead.show(new MastheadView());
+      }, this));
+    },
+    index: function() {
+      this.viewport.show(this.app.UI.create('button', {
+        model: {
+          label: 'View Source &raquo;',
+          title: 'Source code is availabe on GitHub',
+          href: 'http://github.com/rabbit/codex',
+          emphasis: 'primary',
+          iconPrepend: 'gift',
+          iconVariant: 'white'
+        }
+      }));
+    },
+    example: function() {
+      console.log('example');
+      return 'This return value shows up in the dispatch events';
     }
   });
 });

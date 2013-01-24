@@ -1,14 +1,13 @@
 define([
-  'backbone.marionette',
+  '../components/router',
   '../controllers/home'
 ],
-function(Marionette, controller) {
-  var routes = {
-    '': 'indexAction'
-  };
-
-  return Marionette.AppRouter.extend({
-    controller: controller,
-    appRoutes: routes
+function(Router, Controller) {
+  return Router.extend({
+    controller: Controller,
+    appRoutes: {
+      'example': 'example',
+      '*path': 'index'
+    }
   });
 });

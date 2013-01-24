@@ -119,15 +119,10 @@
 require([
   'jquery',
   'app',
-  'routers',
-  'modules/ui/main'
+  'config'
 ],
-function($, app, routers) {
+function($, app, config, HomeController) {
   $(document).ready(function() {
-    app.start({
-      registry: {
-        routers: routers
-      }
-    });
+    app.start(config);
   });
 });
