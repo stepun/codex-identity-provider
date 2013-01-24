@@ -15,17 +15,22 @@ function(Marionette, module) {
       }
 
       if (options.debug) {
-        if (!this.trigger.isDebug) {
-          var trigger = this.trigger;
-          this.trigger = function() {
-            console.log('Application:', arguments);
-            return trigger.apply(this, arguments);
-          };
-          this.trigger.isDebug = true;
-        }
+        this.assignDebugTrigger(this, 'Application');
       }
 
       return this;
+    },
+    assignDebugTrigger: function(obj, prefix) {
+      if (obj && _.isFunction(obj.trigger)) {
+        var trigger = obj.trigger;
+        obj.trigger = function() {
+          (prefix)
+            ? console.log(prefix + ':', arguments)
+            : console.log(arguments);
+          
+          return trigger.apply(this, arguments);
+        };
+      }
     },
     start: function(options) {
       if (options) {

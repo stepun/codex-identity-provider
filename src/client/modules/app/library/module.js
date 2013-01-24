@@ -4,27 +4,14 @@ define({
     this.registryNamespace = 'module-' + this.name;
 
     this.addInitializer(function(options) {
-      options = options && options.bootstrap || {};
-      if (options.debug) {
-        if (!this.trigger.isDebug) {
-          var
-            prefix = this.name + ':',
-            trigger = this.trigger;
-
-          this.trigger = function() {
-            console.log(prefix, arguments);
-            return trigger.apply(this, arguments);
-          };
-          this.trigger.isDebug = true;
-        }
-      }
-    });
-
-    this.addInitializer(function(options) {
-      options = options && options.modules && options.modules[moduleName] || {};
+      options = options && options.modules && options.modules[this.name] || {};
       _.extend(this, _.pick(options, [
         'registryNamespace'
       ]));
+
+      if (options.debug) {
+        this.app.assignDebugTrigger(this, this.name);
+      }
     });
   },
   getRegistry: function() {
