@@ -34,25 +34,20 @@ define([ // -------------------------------------------------------------------
   bootstrap: {
     debug: true,
     initializers: [
-      initRegistry,
-      initLayout,
-      initHistory
+      initRegistry({
+
+      }),
+      initLayout({
+        viewClass: HomeModule.StandardLayout
+      }),
+      initHistory({
+        pushState: true,
+        routers: [
+          HomeModule.IndexRouter
+        ]
+      })
     ]
   },
-  
-  registry: {},
-  
-  layout: {
-    viewClass: HomeModule.StandardLayout
-  },
-  
-  history: {
-    pushState: true,
-    routers: [
-      HomeModule.IndexRouter
-    ]
-  },
-  
   modules: {
     
   }
