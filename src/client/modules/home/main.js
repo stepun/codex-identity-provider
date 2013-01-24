@@ -1,13 +1,13 @@
 define(
 [
   'module',
-  'app',
   'backbone',
-  './routers/home',
-  './controllers/home',
+  'app',
+  './routers/index',
+  './controllers/index',
   './layouts/standard/view'
 ],
-function(module, app, Backbone, IndexRouter, IndexController, StandardLayout) {
+function(module, Backbone, app, IndexRouter, IndexController, StandardLayout) {
   var Home = app.module('Home', function(Home) {
     var mcfg = module.config() || {};
 

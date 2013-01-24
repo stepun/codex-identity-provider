@@ -1,6 +1,6 @@
 define([
-  '../components/router',
-  '../controllers/home'
+  'modules/app/library/router',
+  '../controllers/index'
 ],
 function(Router, Controller) {
   return Router.extend({

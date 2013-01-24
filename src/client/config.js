@@ -4,9 +4,9 @@ define([ // -------------------------------------------------------------------
   //
   
   // Initializers
-  'modules/application/components/initializers/registry',
-  'modules/application/components/initializers/layout',
-  'modules/application/components/initializers/history',
+  'modules/app/library/initializers/registry',
+  'modules/app/library/initializers/layout',
+  'modules/app/library/initializers/history',
 
   // Modules
   'modules/home/main',

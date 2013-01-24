@@ -1,7 +1,7 @@
 define([
-  'modules/application/main'
+  'modules/app/main'
 ],
-function(Application, initializers) {
+function(Application) {
   var app = new Application();
 
   var trigger = app.trigger;
