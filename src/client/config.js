@@ -8,8 +8,9 @@ define([ // -------------------------------------------------------------------
   'modules/application/components/initializers/layout',
   'modules/application/components/initializers/history',
 
-  // Routers
-  'modules/application/routers/home'
+  // Modules
+  'modules/application/home/main',
+  'modules/application/ui/main'
 
 ], function( // ----------------------------------------------------------------
   //
@@ -21,8 +22,9 @@ define([ // -------------------------------------------------------------------
   initLayout,
   initHistory,
 
-  // Routers
-  HomeRouter
+  // Modules
+  HomeModule,
+  UIModule
 
 ) { return { // ----------------------------------------------------------------
   //
@@ -43,9 +45,9 @@ define([ // -------------------------------------------------------------------
   
   history: {
     pushState: true,
-    routers: {
-      home: HomeRouter
-    }
+    routers: [
+      HomeModule.Router
+    ]
   }
   
 
