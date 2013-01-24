@@ -1,11 +1,10 @@
 define(
 [
-  'app',
   'backbone.marionette',
   'underscore',
-  './controller'
+  'app'
 ],
-function(app, Marionette, _, Controller) {
+function(Marionette, _, app) {
   return Marionette.AppRouter.extend({
     initialize: function(options) {
       this.options = options;

@@ -3,9 +3,9 @@ define(
   'module',
   'app',
   'backbone',
-  './routers/index',
-  './controllers/index',
-  './layouts/standard'
+  './routers/home',
+  './controllers/home',
+  './layouts/standard/view'
 ],
 function(module, app, Backbone, IndexRouter, IndexController, StandardLayout) {
   var Home = app.module('Home', function(Home) {
@@ -16,14 +16,16 @@ function(module, app, Backbone, IndexRouter, IndexController, StandardLayout) {
       : 'Home';
   });
 
-  Home.version = '0.1';
-  Home.Router = IndexRouter;
-  Home.Controller = IndexController;
-  Home.Layout = StandardLayout;
-
   Home.getRegistry = function() {
     return this.app.registry.namespace(this.registryNamespace);
   };
+
+  Home.version = '0.1';
+  _.extend(Home, {
+    IndexRouter: IndexRouter,
+    IndexController: IndexController,
+    StandardLayout: StandardLayout
+  });
 
   return Home;
 });

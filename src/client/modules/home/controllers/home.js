@@ -1,11 +1,10 @@
 define([
   'jquery',
   'underscore',
-  '../components/controller',
+  'modules/app/library/controller',
   '../views/masthead/view',
 
   // UI Components
-  'modules/ui/main',
   'modules/ui/components/button'
 ],
 function($, _, Controller, MastheadView) {

@@ -9,8 +9,8 @@ define([ // -------------------------------------------------------------------
   'modules/application/components/initializers/history',
 
   // Modules
-  'modules/application/home/main',
-  'modules/application/ui/main'
+  'modules/home/main',
+  'modules/ui/main'
 
 ], function( // ----------------------------------------------------------------
   //
@@ -41,12 +41,14 @@ define([ // -------------------------------------------------------------------
 
   registry: {},
 
-  layout: {},
+  layout: {
+    viewClass: HomeModule.StandardLayout
+  },
   
   history: {
     pushState: true,
     routers: [
-      HomeModule.Router
+      HomeModule.IndexRouter
     ]
   }
   
