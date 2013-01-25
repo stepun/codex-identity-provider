@@ -1,13 +1,16 @@
 define([
+  'backbone',
+  'backbone.marionette',
   'jquery',
   'underscore',
   'modules/app/library/controller',
   '../views/masthead/view',
+  '../views/enter/view',
 
   // UI Components
   'modules/ui/components/button'
 ],
-function($, _, Controller, MastheadView) {
+function(Backbone, Marionette, $, _, Controller, MastheadView, EnterView) {
   return Controller.extend({
     initialize: function() {
       this.app.on('start:layout', _.bind(function(layout) {
@@ -16,23 +19,15 @@ function($, _, Controller, MastheadView) {
         this.masthead.show(new MastheadView());
       }, this));
     },
-    index: function() {
-      this.viewport.show(this.app.UI.create('button', {
-        model: {
-          label: 'View Source &raquo;',
-          title: 'Source code is availabe on GitHub',
-          href: 'http://github.com/rabbit/codex',
-          emphasis: 'primary',
-          iconPrepend: 'gift',
-          iconVariant: 'white'
-        }
+    enter: function() {
+      this.viewport.show(new EnterView({
+        model: new Backbone.Model({
+
+        })
       }));
     },
-    example: function() {
-      console.log('example action fired');
-      console.log('inspect "controller:dispatch" event data to see the result value is passed back.');
-      console.log('alternatively the controller fires "example:dispatch" and "dispatch" where the value can be retrieved.');
-      return 'This return value shows up in the dispatch events';
+    error404: function() {
+      this.app.execute('404');
     }
   });
 });

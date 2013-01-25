@@ -6,8 +6,8 @@ function(Router, Controller) {
   return Router.extend({
     controller: Controller,
     appRoutes: {
-      'example': 'example',
-      '*path': 'index'
+      '': 'enter',
+      '*path': 'error404'
     }
   });
 });
