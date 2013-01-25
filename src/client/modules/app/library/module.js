@@ -1,16 +1,17 @@
 define({
-  initialize: function(moduleName) {
-    this.name = moduleName;
-    this.registryNamespace = 'module-' + this.name;
+  initialize: function() {
+    this.debug = false;
+    this.registryNamespace = 'module-' + this.moduleName;
 
     this.addInitializer(function(options) {
-      options = options && options.modules && options.modules[this.name] || {};
+      options = options && options.modules && options.modules[this.moduleName] || {};
       _.extend(this, _.pick(options, [
+        'debug',
         'registryNamespace'
       ]));
 
-      if (options.debug) {
-        this.app.assignDebugTrigger(this, this.name);
+      if (this.debug) {
+        this.app.assignDebugTrigger(this, this.moduleName);
       }
     });
   },

@@ -1,6 +1,6 @@
 define([
   'backbone.marionette',
-  './library/module'
+  'modules/app/library/module'
 ],
 function(Marionette, module) {
   var parent = Marionette.Application.prototype;
@@ -21,7 +21,7 @@ function(Marionette, module) {
       return this;
     },
     assignDebugTrigger: function(obj, prefix) {
-      if (obj && _.isFunction(obj.trigger)) {
+      if (obj && _.isFunction(obj.trigger) && !obj.trigger.isDebugTrigger) {
         var trigger = obj.trigger;
         obj.trigger = function() {
           (prefix)
@@ -30,6 +30,7 @@ function(Marionette, module) {
           
           return trigger.apply(this, arguments);
         };
+        obj.trigger.isDebugTrigger = true;
       }
     },
     start: function(options) {
@@ -41,15 +42,18 @@ function(Marionette, module) {
     },
     module: function(name, definition) {
       var args = _.values(arguments);
+
       args[1] = _.wrap(definition, function(definition) {
         _.extend(this, module);
-        this.initialize(name);
+        this.initialize();
         if (_.isFunction(definition)) {
           definition.apply(this, _.values(arguments).slice(1));
         }
       });
 
-      return parent.module.apply(this, args);
+      var result = parent.module.apply(this, args);
+      this.triggerMethod('module:register', result);
+      return result;
     }
   });
 

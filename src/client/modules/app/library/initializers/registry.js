@@ -19,7 +19,7 @@ function($, _, Registry) {
         this.registry.set('routers', routers);
       }, this));
 
-      this.trigger('initialize:registry', this.registry);
+      this.triggerMethod('initialize:registry', this.registry);
     };
   };
 

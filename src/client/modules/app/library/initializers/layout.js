@@ -21,11 +21,11 @@ function(_, Layout) {
 
         this.once('start:routers', _.bind(function() {
           this.layout.render();
-          this.trigger('start:layout', this.layout);
+          this.triggerMethod('start:layout', this.layout);
         }, this));
       }
 
-      this.trigger('initialize:layout', this.layout);
+      this.triggerMethod('initialize:layout', this.layout);
     };
   };
 
