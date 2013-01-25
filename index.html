@@ -5,9 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title></title>
 
-  <script src="/codex/src/client/lib/modernizr.js"></script>
+  <script src="/codex-identity-provider/src/client/lib/modernizr.js"></script>
 
-  <script src="/codex/src/client/lib/require.js"></script>
+  <script src="/codex-identity-provider/src/client/lib/require.js"></script>
   <script>
 
     // This weird looking code is for GitHub Pages. Doing it this way allows me
@@ -16,17 +16,17 @@
     // configurations for gh-pages.
 
     $.ajax({
-      url: '/codex/src/client/main.js',
+      url: '/codex-identity-provider/src/client/main.js',
       dataType: 'text',
       success: function(src) {
         src = src.replace(
           /\s*baseUrl\s*:\s*['"][^'"]+['"]\s*/g,
-          "baseUrl: '/codex/src/client'"
+          "baseUrl: '/codex-identity-provider/src/client'"
         );
 
         src = src.replace(
           /\s*map\s*:\s*{\s*'\*'\s*:\s*{\s*/,
-          "map: { '*': { 'config': '/codex/src/client/config.js.dist',"
+          "map: { '*': { 'config': '/codex-identity-provider/src/client/config.js.dist',"
         );
 
         eval(src); // mwuahaha!
@@ -35,7 +35,7 @@
 
   </script>
   
-  <link rel="author" type="text/x-yaml" href="/codex/src/humans.txt">
+  <link rel="author" type="text/x-yaml" href="/codex-identity-provider/src/humans.txt">
   
 </head>
 <body>
