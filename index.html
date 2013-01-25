@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title></title>
+
+  <script src="/codex/src/client/lib/modernizr.js"></script>
+
+  <script src="/codex/src/client/lib/require.js"></script>
+  <script>
+
+    // This weird looking code is for GitHub Pages. Doing it this way allows me
+    // to keep my repository the same across all branches with the exception of
+    // this index.html file and this snippet here where I can correct requirejs
+    // configurations for gh-pages.
+
+    $.ajax({
+      url: '/codex/src/client/main.js',
+      dataType: 'text',
+      success: function(src) {
+        src = src.replace(
+          /\s*baseUrl\s*:\s*['"][^'"]+['"]\s*/g,
+          "baseUrl: '/codex/src/client'"
+        );
+
+        src = src.replace(
+          /\s*map\s*:\s*{\s*'\*'\s*:\s*{\s*/,
+          "map: { '*': { 'config': '/codex/src/client/config.js.dist',"
+        );
+
+        eval(src); // mwuahaha!
+      }
+    });
+
+  </script>
+  
+  <link rel="author" type="text/x-yaml" href="/codex/src/humans.txt">
+  
+</head>
+<body>
+</body>
+</html>
