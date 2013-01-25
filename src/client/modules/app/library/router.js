@@ -62,7 +62,7 @@ function(Marionette, _, app) {
           trigger.call(this.app, 'before:controller:dispatch', controller, data);
           trigger.call(this, 'before:dispatch', data);
           trigger.call(this, 'before:' + method, data);
-          sourceMethod.apply(this, data.params);
+          data.result = sourceMethod.apply(this, data.params);
           trigger.call(this, method, data);
           trigger.call(this, 'dispatch', data);
           trigger.call(this.app, 'controller:dispatch', controller, data);

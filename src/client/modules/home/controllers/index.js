@@ -29,7 +29,9 @@ function($, _, Controller, MastheadView) {
       }));
     },
     example: function() {
-      console.log('example');
+      console.log('example action fired');
+      console.log('inspect "controller:dispatch" event data to see the result value is passed back.');
+      console.log('alternatively the controller fires "example:dispatch" and "dispatch" where the value can be retrieved.');
       return 'This return value shows up in the dispatch events';
     }
   });
