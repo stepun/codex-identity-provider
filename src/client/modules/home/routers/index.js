@@ -7,6 +7,7 @@ function(Router, Controller) {
     controller: Controller,
     appRoutes: {
       '': 'enter',
+      '.error(/:status)(/*path)': 'showErrorPage',
       '*path': 'error404'
     }
   });

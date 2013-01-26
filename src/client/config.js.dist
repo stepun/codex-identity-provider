@@ -3,9 +3,14 @@ define([ // -------------------------------------------------------------------
   // PATHS
   //
   
+  // Platform
+  'backbone',
+  'backbone.marionette',
+
   // Initializers
-  'modules/app/library/initializers/registry',
+  'modules/app/library/initializers/error-handler',
   'modules/app/library/initializers/layout',
+  'modules/app/library/initializers/registry',
   'modules/app/library/initializers/history',
 
   // Modules
@@ -17,9 +22,14 @@ define([ // -------------------------------------------------------------------
   // REFERENCES
   //
   
+  // Platform
+  Backbone,
+  Marionette,
+  
   // Initializers
-  initRegistry,
+  initErrorHandler,
   initLayout,
+  initRegistry,
   initHistory,
 
   // Modules
@@ -34,11 +44,18 @@ define([ // -------------------------------------------------------------------
   bootstrap: {
     debug: true,
     initializers: [
-      initRegistry({
-
+      initErrorHandler({
+        route404: '.error/404'
       }),
       initLayout({
         viewClass: HomeModule.StandardLayout
+      }),
+      initRegistry({
+        data: {
+          user: new Backbone.Model({
+            session: true
+          })
+        }
       }),
       initHistory({
         pushState: true,

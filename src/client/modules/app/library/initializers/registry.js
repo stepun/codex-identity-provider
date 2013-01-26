@@ -1,23 +1,38 @@
 define([
+  'backbone.marionette',
   'jquery',
   'underscore',
   '../../models/registry'
 ],
-function($, _, Registry) {
+function(Marionette, $, _, Registry) {
   var initRegistry = function(options) {
     return function() {
       options = _.defaults(options || {}, {
-        title: $('head title').text()
+        modelClass: Registry,
+        mergeData: true,
+        data: {}
       });
 
-      this.registry = new Registry(options);
-      this.registry.on('change:title', function(model, text) {
+      if (options.mergeDataDefaults) {
+        options.data = _.defaults(options.data || {}, {
+          routers: {},
+          title: $('head title').text()
+        });
+      }
+
+      var registry = this.registry = new options.modelClass();
+      Marionette.addEventBinder(registry);
+      registry.on('change:title', function(model, text) {
         $('head title').text(text);
       });
 
-      this.on('start:routers', _.bind(function(routers) {
-        this.registry.set('routers', routers);
-      }, this));
+      if (_.isObject(options.data)) {
+        registry.set(options.data);
+      }
+
+      this.on('start:routers', function(routers) {
+        registry.set('routers', routers);
+      });
 
       this.triggerMethod('initialize:registry', this.registry);
     };
