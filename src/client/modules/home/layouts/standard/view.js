@@ -17,7 +17,24 @@ define([
   'bootstrap-typeahead'
 ],
 function(Marionette, tpl) {
+  var parent = Marionette.Layout.prototype;
   var StandardLayoutView = Marionette.Layout.extend({
+    initialize: function(options) {
+      parent.initialize.apply(this, arguments);
+      this.on('before:render', function() {
+        var model = this.model;
+        if (model && !model._isLayoutBound && model.has('user')) {
+          model.get('user').on('change:session', _.bind(this.render, this));
+        }
+      });
+      
+      if (this.model && this.model.has('user')) {
+        var user = this.model.get('user');
+        if (user && user.on) {
+          user.on('change:session', _.bind(this.render, this));
+        }
+      }
+    },
     template: tpl,
     regions: {
       mainMenu: '#main-menu',
@@ -27,21 +44,22 @@ function(Marionette, tpl) {
     },
     events: {
       'click a[data-goto="home"], li[data-goto="home"] a': 'home',
-      'click a[data-goto="register"]': 'register',
-      'click a[data-goto="login"]': 'login'
+      'click li[data-goto="register"] a': 'register',
+      'click li[data-goto="login"] a': 'login'
     },
     navigate: function(location, options) {
       Backbone.history.navigate(location, _.defaults(options || {}, {
         trigger: true
       }));
+      return false;
     },
-    home: function() {
-      return this.navigate('home');
+    home: function(evt) {
+      return this.navigate('');
     },
-    register: function() {
+    register: function(evt) {
       return this.navigate('register')
     },
-    login: function() {
+    login: function(evt) {
       return this.navigate('login');
     }
   });

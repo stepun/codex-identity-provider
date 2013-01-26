@@ -4,9 +4,11 @@
       <div class="container">
         <a data-goto="home" class="brand" href="#">Identity Provider</a>
         <ul class="nav">
-          <li data-goto="home"><a href="#">Home</a></li>
-          <li data-goto="register"><a href="#">Register</a></li>
-          <li data-goto="login"><a href="#">Login</a></li>
+          {{#if user.session}}
+            <li><a href="#" data-goto="logout">Logout</a></li>
+          {{else}}
+            <li><a href="#" data-goto="connect">Connect</a></li>
+          {{/if}}
         </ul>
       </div>
     </div>
