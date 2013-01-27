@@ -58,7 +58,7 @@ define([ // -------------------------------------------------------------------
         }
       }),
       initHistory({
-        pushState: true,
+        pushState: false,
         routers: [
           HomeModule.IndexRouter
         ]
