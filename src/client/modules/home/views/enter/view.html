@@ -40,7 +40,7 @@
           <div class="control-group">
             <div class="controls">
               <p>
-                <label class="checkbox inline">
+                <label class="checkbox">
                   <input type="checkbox"> Remember me
                 </label>
               </p>
@@ -54,10 +54,10 @@
             <div class="controls">
               <button class="btn btn-link"
                   data-goto="recover-password"
-                  href="#">Did you forget your login information?</button>
+                  href="#">I forgot my login information.</button>
               <button class="btn btn-link"
                   data-goto="register"
-                  href="#">Need an account?</button>
+                  href="#">I need an account.</button>
             </div>
           </div>
         </form>
@@ -84,10 +84,13 @@
             <div class="controls">
               <button class="btn btn-link"
                   data-goto="recover-username"
-                  href="#">Did you forget your username?</button>
+                  href="#">I forgot my username.</button>
               <button class="btn btn-link"
                   data-goto="recover-lookup-by-username"
-                  href="#">Did you lose access to your email?</button>
+                  href="#">I lost access to my email.</button>
+              <button class="btn btn-link"
+                  data-goto="login-credentials"
+                  href="#">I remember my login information.</button>
             </div>
           </div>
         </form>
@@ -103,7 +106,7 @@
           </div>
           <div class="control-group">
             <div class="controls">
-              <label class="checkbox inline">
+              <label class="checkbox">
                 <input type="checkbox" checked="checked">
                 I also forgot my password
               </label>
@@ -122,10 +125,13 @@
             <div class="controls">
               <button class="btn btn-link"
                   data-goto="recover-support"
-                  href="#">Did you forget your email?</button>
+                  href="#">I forgot my email.</button>
               <button class="btn btn-link"
                   data-goto="recover-lookup-by-email"
-                  href="#">Did you lose access to your email?</button>
+                  href="#">I lost access to my email.</button>
+              <button class="btn btn-link"
+                  data-goto="recover-password"
+                  href="#">I remember my username.</button>
             </div>
           </div>
         </form>
@@ -152,7 +158,10 @@
             <div class="controls">
               <button class="btn btn-link"
                   data-goto="recover-lookup-by-email"
-                  href="#">Did you forget your username?</button>
+                  href="#">I forgot my username.</button>
+              <button class="btn btn-link"
+                  data-goto="recover-password"
+                  href="#">I have access to my email.</button>
             </div>
           </div>
         </form>
@@ -179,7 +188,13 @@
             <div class="controls">
               <button class="btn btn-link"
                   data-goto="recover-support"
-                  href="#">Did you forget your email?</button>
+                  href="#">I forgot my email.</button>
+              <button class="btn btn-link"
+                  data-goto="recover-password"
+                  href="#">I have access to my email.</button>
+              <button class="btn btn-link"
+                  data-goto="recover-lookup-by-username"
+                  href="#">I remember my username.</button>
             </div>
           </div>
         </form>
@@ -190,7 +205,7 @@
           <div class="control-group">
             <label class="control-label">Account</label>
             <div class="controls">
-              <input type="text" disabled value="username@or-email.com">
+              <input type="text" disabled name="identity">
             </div>
           </div>
           <div class="control-group">
