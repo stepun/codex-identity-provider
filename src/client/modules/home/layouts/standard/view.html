@@ -2,19 +2,14 @@
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-        <a data-goto="home" class="brand" href="#">Identity Provider</a>
+        <a data-goto="home" class="brand" href="#">Codex</a>
         <ul class="nav">
-          {{#if user.session}}
-            <li><a href="#" data-goto="logout">Logout</a></li>
-          {{else}}
-            <li><a href="#" data-goto="connect">Connect</a></li>
-          {{/if}}
         </ul>
       </div>
     </div>
   </div>
 </div>
 <div class="container">
-  <div id="masthead"></div>
-  <div id="viewport"></div>
+  <header id="masthead"></header>
+  <section id="viewport"></section>
 </div>
