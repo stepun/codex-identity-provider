@@ -110,15 +110,15 @@ function(Marionette, tpl) {
 
       if (input.is('[type="password"]')) {
         input.attr('type', 'text');
+        input.addClass('password-revealed');
         confirm.closest('.control-group').hide();
-        container.find('.add-on').css('background-color', '#FAA732');
         input.focus();
       }
       else if (input.is('[type="text"]')) {
         input.attr('type', 'password');
+        input.removeClass('password-revealed');
         confirm.val(input.val()).change();
         confirm.closest('.control-group').show();
-        container.find('.add-on').css('background-color', '');
         input.focus();
       }
     },
@@ -154,15 +154,25 @@ function(Marionette, tpl) {
         'login-credentials' === id
       );
 
+      var firstField = loginPane.find('form#'+id+' [name]:not([disabled]):first');
+
       switch (id) {
         case 'recover-password':
         case 'recover-username':
         case 'recover-lookup-by-username':
         case 'recover-lookup-by-email':
           mergePreviousData();
-        case 'recover-lookup':
         case 'login-credentials':
-          var firstField = loginPane.find('form#'+id+' [name]:not([disabled]):first');
+          firstField.focus().select();
+        break;
+        case 'recover-lookup':
+          var el = selectedForm.find('input[name="identity"]');
+          _.each(previousData, function(input) {
+            if ('email' === input.name || 'username' === input.name) {
+              el.val(input.value);
+              return false;
+            }
+          });
           firstField.focus().select();
         break;
       }

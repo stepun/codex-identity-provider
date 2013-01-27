@@ -14,8 +14,25 @@ input[type="password"] + .add-on .icon-eye-open {
   opacity: 0.5;
 }
 
+input.password-revealed + .add-on .icon-eye-open {
+  opacity: 0.75;
+}
+
 input[type="password"] + .add-on .icon-eye-open:hover,
-input[type="text"] + .add-on .icon-eye-open {
+input.password-revealed + .add-on .icon-eye-open:hover {
   opacity: 1;
   cursor: pointer;
+}
+
+input.password-revealed + .add-on {
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #faa732;
+  background-image: -moz-linear-gradient(top, #fbb450, #f89406);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fbb450), to(#f89406));
+  background-image: -webkit-linear-gradient(top, #fbb450, #f89406);
+  background-image: -o-linear-gradient(top, #fbb450, #f89406);
+  background-image: linear-gradient(to bottom, #fbb450, #f89406);
+  background-repeat: repeat-x;
+  border-color: #f89406 #f89406 #ad6704;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 }
