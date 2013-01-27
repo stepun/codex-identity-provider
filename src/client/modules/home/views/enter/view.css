@@ -1,0 +1,21 @@
+#login form {
+  display: none;
+}
+
+#login form.active {
+  display: block;
+}
+
+ul.nav li.active a {
+  font-weight: bold;
+}
+
+input[type="password"] + .add-on .icon-eye-open {
+  opacity: 0.5;
+}
+
+input[type="password"] + .add-on .icon-eye-open:hover,
+input[type="text"] + .add-on .icon-eye-open {
+  opacity: 1;
+  cursor: pointer;
+}
