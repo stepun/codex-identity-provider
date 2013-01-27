@@ -59,6 +59,7 @@ define([ // -------------------------------------------------------------------
       }),
       initHistory({
         pushState: false,
+        root: window.location.pathname,
         routers: [
           HomeModule.IndexRouter
         ]
