@@ -1,0 +1,12 @@
+  <header>
+    <h2>{{{title}}}</h2>
+  </header>
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      {{#targets}}
+        <li><a data-go="{{id}}" href="#">{{{label}}}</a></li>
+      {{/targets}}
+    </ul>
+    <div class="tab-content"></div>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+<header>
+  <legend>Recover Account</legend>
+</header>
+<div class="control-group">
+  <label class="control-label">{{known.label}}</label>
+  <div class="controls">
+    <input disabled value="{{known.value}}" type="text">
+  </div>
+</div>
+<div class="control-group">
+  <label for="question1" class="control-label">Question 1</label>
+  <div class="controls">
+    <input name="question1" type="text">
+  </div>
+</div>
+<div class="control-group">
+  <label for="question2" class="control-label">Question 2</label>
+  <div class="controls">
+    <input name="question2" type="text">
+  </div>
+</div>
+<div class="control-group">
+  <label class="checkbox">
+    <input checked name="email-changed" type="checkbox">
+    I am unable to access my email.
+  </label>
+  <label for="email" class="control-label">Change Email</label>
+  <div class="controls">
+    <input name="email" type="text">
+  </div>
+</div>
+<div class="control-group">
+  <label for="password" class="control-label">New Password</label>
+  <div class="controls">
+    <input name="password" type="text">
+  </div>
+</div>
+<div class="control-group">
+  <label for="password-confirm" class="control-label">
+    Confirm New Password
+  </label>
+  <div class="controls">
+    <input name="password-confirm" type="text">
+  </div>
+</div>
+<div class="control-group">
+  <div class="controls">
+    <button data-target="continue" class="btn btn-primary">Continue</button>
+    or <a data-target="login" href="#">Cancel</a>
+  </div>
+</div>

@@ -1,12 +1,13 @@
 define([
   'modules/app/library/router',
-  '../controllers/index'
+  '../controllers/error'
 ],
 function(Router, Controller) {
   return Router.extend({
     controller: Controller,
     appRoutes: {
-      '': 'enter'
+      '.error(/:status)(/*path)': 'error',
+      '*path': 'executeError404'
     }
   });
 });

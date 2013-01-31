@@ -43,7 +43,7 @@ function(Marionette, tpl) {
       metatrail: '#metatrail'
     },
     events: {
-      'click a[data-goto="home"], li[data-goto="home"] a': 'home'
+      'click a[data-target="home"], li[data-target="home"] a': 'home'
     },
     navigate: function(location, options) {
       Backbone.history.navigate(location, _.defaults(options || {}, {

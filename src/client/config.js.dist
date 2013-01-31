@@ -48,7 +48,7 @@ define([ // -------------------------------------------------------------------
         route404: '.error/404'
       }),
       initLayout({
-        viewClass: HomeModule.StandardLayout
+        viewClass: HomeModule.component.StandardLayout
       }),
       initRegistry({
         data: {
@@ -61,7 +61,8 @@ define([ // -------------------------------------------------------------------
         pushState: false,
         root: window.location.pathname,
         routers: [
-          HomeModule.IndexRouter
+          HomeModule.component.ErrorRouter,
+          HomeModule.component.IndexRouter
         ]
       })
     ]

@@ -1,76 +1,16 @@
 define(
 [
   'backbone.marionette',
-  'underscore',
-  'app'
+  'underscore'
 ],
-function(Marionette, _, app) {
+function(Marionette, _) {
   return Marionette.AppRouter.extend({
     initialize: function(options) {
-      this.options = options;
-
-      var
-        container = (options && options.controller)? options : this,
-        controller = container.controller;
-
-      if (controller) {
-        if (_.isFunction(controller)) {
-          controller = container.controller = new controller();
-        }
-        else {
-          controller = container.controller = _.bindAll(controller);
-        }
-
-        Marionette.addEventBinder(controller);
-        if (!controller.hasOwnProperty('app')) {
-          controller.app = app;
-        }
-
-        this.bindDispatchEvents();
+      // Allowing the controller property to be a class definition means that
+      // controller instatiation can be triggered during "initialize:history"
+      if (_.isFunction(this.controller)) {
+        this.controller = new this.controller();
       }
-    },
-    bindDispatchEvents: function() {
-      var
-        controller = Marionette.getOption(this, 'controller'),
-        dispatchable = (_.isFunction(controller.getDispatchable))
-          ? controller.getDispatchable()
-          : [];
-
-      _.each(dispatchable, _.bind(this._bindDispatchEvent, this, controller));
-      return this;
-    },
-    _bindDispatchEvent: function(controller, method) {
-      var
-        isBindable = (
-          _.isString(method) &&
-          _.isObject(controller) &&
-          _.isFunction(controller[method]) &&
-          !controller[method].dispatchable
-        );
-
-      if (isBindable) {
-        var
-          trigger = Marionette.triggerMethod,
-          sourceMethod = controller[method],
-          data = {
-            controller: controller,
-            action: method
-          };
-
-        controller[method] = function() {
-          data.params = arguments;
-          trigger.call(this.app, 'before:controller:dispatch', controller, data);
-          trigger.call(this, 'before:dispatch', data);
-          trigger.call(this, 'before:' + method, data);
-          data.result = sourceMethod.apply(this, data.params);
-          trigger.call(this, method, data);
-          trigger.call(this, 'dispatch', data);
-          trigger.call(this.app, 'controller:dispatch', controller, data);
-        };
-        controller[method].dispatchable = true;
-      }
-
-      return this;
     }
   });
 });
