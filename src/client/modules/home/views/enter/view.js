@@ -13,7 +13,7 @@ function(Marionette, tpl) {
       loginPane: '#login',
       registerTab: 'ul.nav a[href="#register"]',
       registerPane: '#register',
-      password: 'input[type="password"][name="password"]',
+      password: 'input[name="password"]',
       confirmPassword: 'input[type="password"][name="confirmPassword"]'
     },
     events: {
@@ -97,6 +97,8 @@ function(Marionette, tpl) {
             confirm.closest('.control-group').show();
           }
         break;
+        case 'login':
+          this.showTab(this.$el.find(this.ui.loginTab));
         default:
           this.showLoginSubform(action);
         break;
