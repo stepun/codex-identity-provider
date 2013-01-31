@@ -1,10 +1,10 @@
 define([
-  'backbone.marionette',
+  'modules/app/library/view/layout',
   'tpl!./view',
   'css!./view'
 ],
-function(Marionette, tpl) {
-  return Marionette.Layout.extend({
+function(Layout, tpl) {
+  return Layout.extend({
     template: tpl,
     className: 'row',
     regions: {
