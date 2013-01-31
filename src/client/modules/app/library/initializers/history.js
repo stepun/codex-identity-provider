@@ -12,11 +12,10 @@ function(Backbone, _) {
       });
 
       var startRouters = function() {
-        var instances = [];
         _.each(options.routers, function(Router, key) {
-          instances.push(new Router());
+          options.routers[key] = new Router();
         });
-        this.triggerMethod('start:routers', instances);
+        this.triggerMethod('start:routers', options.routers);
       };
 
       var startHistory = function() {

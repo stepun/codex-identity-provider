@@ -4,16 +4,14 @@ define([
   'jquery',
   'underscore',
   'modules/app/library/controller',
-  '../views/enter/view'
+  '../views/enter'
 ],
-function(Backbone, Marionette, $, _, Controller, EnterView) {
+function(Backbone, Marionette, $, _, Controller, views) {
   var parent = Controller.prototype;
   var action = Controller.action;
   var IndexController = Controller.extend({
     enter: action(function() {
-      this.view = new EnterView({
-
-      });
+      this.view = new views.EnterView();
     })
   });
   return IndexController;

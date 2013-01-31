@@ -28,6 +28,10 @@ function(app, Backbone, Marionette, _) {
   }
 
   function displayView() {
+    if (!this.view) {
+      return;
+    }
+    
     var viewport = (this.viewport)
       ? this.viewport
       : this.app.layout && this.app.layout.viewport;
