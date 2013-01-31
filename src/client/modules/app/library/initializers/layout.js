@@ -2,9 +2,18 @@ define([
   'underscore'
 ],
 function(_) {
-  var initLayout = function(options) {
-    return function() {
-      options = _.defaults(options || {}, {
+  var initLayout = function(config) {
+    return function(options) {
+      // options.bootstrap keys that are relevant to this initializer
+      options = _.pick(options && options.bootstrap || {}, [
+        'debug'
+      ]);
+
+      // merge options with the order of precedence being:
+      // defaults -> config.bootstrap -> initializer options
+      options = _.defaults(config || {}, options, {
+        debug: false,
+        debugDeps: false,
         useRegistryAsModel: true,
         mergeViewOptions: true,
         viewClass: false,
@@ -17,8 +26,14 @@ function(_) {
         });
       }
 
+      if (options.debug && _.isArray(options.debugDeps)) {
+        require(options.debugDeps);
+      }
+
       if (!options.viewClass) {
-        console.warn('layout initializer failed: missing viewClass config');
+        if (options.debug) {
+          console.warn('layout initializer failed: missing viewClass config');
+        }
         return;
       }
 

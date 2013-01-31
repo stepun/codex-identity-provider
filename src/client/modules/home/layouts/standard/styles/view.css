@@ -10,11 +10,11 @@ input[type="password"] {
   border-bottom-color: #d6d6d6;
 }
 
-header h1 a {
+#masthead h1 a {
   color: #836199;
 }
 
-header h1 a:hover {
+#masthead h1 a:hover {
   text-decoration: none;
   color: #836199;
 }

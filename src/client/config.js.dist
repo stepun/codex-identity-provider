@@ -48,6 +48,9 @@ define([ // -------------------------------------------------------------------
         route404: '.error/404'
       }),
       initLayout({
+        debugDeps: [
+          'modules/home/debug'
+        ],
         viewClass: HomeModule.component.StandardLayout
       }),
       initRegistry({
