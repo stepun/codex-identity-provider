@@ -1,4 +1,5 @@
 define([
+  'modules/app/library/extensions/underscore',
   './enter/view',
   './enter/connect-account/view',
   './enter/connect-account/login/view',
@@ -11,7 +12,7 @@ define([
   './enter/connect-sso/view'
 ],
 function(
-
+  _,
   EnterView,
   ConnectAccountView,
   LoginView,
@@ -22,8 +23,6 @@ function(
   VerifyAccountView,
   RegisterView,
   ConnectSsoView
-
 ) {
-  // Self packaging result
-  var args=/^\s*function\s*\(([^\)]*)/i,a=arguments.callee.toString().match(args)[1].match(/[^,\s]+/gi),r={},i=0,l=a.length;for(;i<l;i++)r[a[i]]=arguments[i];return r}
-);
+  return _.omit(_.argumentsMap(arguments), '_');
+});

@@ -1,11 +1,10 @@
 define([
+  'modules/app/library/extensions/underscore',
   './enter/connect-account/view/model'
 ],
 function(
-
+  _,
   ConnectAccountViewModel
-
 ) {
-  // Self packaging result
-  var args=/^\s*function\s*\(([^\)]*)/i,a=arguments.callee.toString().match(args)[1].match(/[^,\s]+/gi),r={},i=0,l=a.length;for(;i<l;i++)r[a[i]]=arguments[i];return r}
-);
+  return _.omit(_.argumentsMap(arguments), '_');
+});

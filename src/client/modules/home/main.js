@@ -9,11 +9,8 @@ define(
   './controllers/error',
   './layouts/standard/view'
 ],
-function(module, Backbone, app, IndexRouter, IndexController, ErrorRouter,
-ErrorController, StandardLayout) {
-  var Home = app.module('Home');
-
-  _.extend(Home, {
+function(module, Backbone, app, IndexRouter, IndexController, ErrorRouter, ErrorController, StandardLayout) {
+  var Home = _.extend(app.module('Home'), {
     version: '0.1',
     component: {
       IndexRouter: IndexRouter,
