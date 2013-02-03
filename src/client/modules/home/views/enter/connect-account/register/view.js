@@ -4,6 +4,9 @@ define([
 ],
 function(Marionette, tpl) {
   return Marionette.ItemView.extend({
-    template: tpl
+    template: tpl,
+    tagName: 'form',
+    id: 'register',
+    className: 'form-horizontal'
   });
 });
