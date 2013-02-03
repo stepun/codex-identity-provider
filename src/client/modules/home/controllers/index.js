@@ -4,23 +4,26 @@ define([
   'jquery',
   'underscore',
   'modules/app/library/controller',
+  '../models/enter',
   '../views/enter'
 ],
-function(Backbone, Marionette, $, _, Controller, enterViews) {
+function(Backbone, Marionette, $, _, Controller, enterModels, enterViews) {
   var parent = Controller.prototype;
   var action = Controller.action;
   var IndexController = Controller.extend({
     enter: action(function() {
-      var v = enterViews,
+      var
+        m = enterModels,
+        v = enterViews,
         enter = new v.EnterView(),
         connectAccount = new v.ConnectAccountView({
-          model: new Backbone.Model({
+          model: new m.ConnectAccountViewModel({
             title: 'Account',
-            targets: [
+            active: 'login',
+            tabs: [
               {
                 id: 'login',
                 label: 'Login',
-                active: true,
                 view: new v.LoginView()
               },
               {
